@@ -43,6 +43,15 @@ export class ScoreFormComponent implements OnInit {
             player3Score: -12,
             player4Score: 36
         }]
+
+        if (this.playerScoreData.length > 0) {
+            this.playerScoreData.forEach(score => {
+                this.playerOneTotalScore = this.playerOneTotalScore + score.player1Score;
+                this.playerTwoTotalScore = this.playerTwoTotalScore + score.player2Score;
+                this.playerThreeTotalScore = this.playerThreeTotalScore + score.player3Score;
+                this.playerFourTotalScore = this.playerFourTotalScore + score.player4Score;
+            });
+        }
     }
 
     public defaultScoreModel() {
@@ -64,13 +73,13 @@ export class ScoreFormComponent implements OnInit {
     }
 
     onInputChange(player, value) {
-        if (!value) return;
+        if (!value || value < 0) return;
 
 
         value = Number(value);
 
         if (player === "1") {
-            this.inputScores.player1Score = value;
+            this.inputScores.player1Score = 3 * value;
             this.inputScores.player2Score = -value;
             this.inputScores.player3Score = -value;
             this.inputScores.player4Score = -value;
@@ -80,7 +89,7 @@ export class ScoreFormComponent implements OnInit {
             this.scoreInputForm.controls['player4Score'].setValue(-value);
         } else if (player === "2") {
             this.inputScores.player1Score = -value;
-            this.inputScores.player2Score = value;
+            this.inputScores.player2Score = 3 * value;
             this.inputScores.player3Score = -value;
             this.inputScores.player4Score = -value;
 
@@ -90,7 +99,7 @@ export class ScoreFormComponent implements OnInit {
         } else if (player === "3") {
             this.inputScores.player1Score = -value;
             this.inputScores.player2Score = -value;
-            this.inputScores.player3Score = value;
+            this.inputScores.player3Score = 3 * value;
             this.inputScores.player4Score = -value;
 
             this.scoreInputForm.controls['player1Score'].setValue(-value);
@@ -100,7 +109,7 @@ export class ScoreFormComponent implements OnInit {
             this.inputScores.player1Score = -value;
             this.inputScores.player2Score = -value;
             this.inputScores.player3Score = -value;
-            this.inputScores.player4Score = value;
+            this.inputScores.player4Score = 3 * value;
 
             this.scoreInputForm.controls['player1Score'].setValue(-value);
             this.scoreInputForm.controls['player2Score'].setValue(-value);
@@ -123,10 +132,10 @@ export class ScoreFormComponent implements OnInit {
         console.log("save", this.inputScores)
         let scores = this.defaultScoreModel();
         scores.player1Score = this.inputScores.player1Score;
-        scores.player2Score = this.inputScores.player2Score; 
-        scores.player3Score = this.inputScores.player3Score; 
+        scores.player2Score = this.inputScores.player2Score;
+        scores.player3Score = this.inputScores.player3Score;
         scores.player4Score = this.inputScores.player4Score;
-        
+
         this.playerScoreData.push(scores);
 
         this.playerOneTotalScore = this.playerOneTotalScore + this.inputScores.player1Score;
