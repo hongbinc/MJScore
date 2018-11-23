@@ -1,30 +1,59 @@
 <div class="container">
   <h2>Bordered Table</h2>
-  <p>The .table-bordered class adds borders to a table:</p>            
+  <p>The .table-bordered class adds borders to a table:</p>
+
   <table class="table table-bordered">
     <thead>
       <tr>
-        <th>Firstname</th>
-        <th>Lastname</th>
-        <th>Email</th>
+        <th>Player1</th>
+        <th>Player2</th>
+        <th>Player3</th>
+        <th>Player4</th>
       </tr>
     </thead>
     <tbody>
+      <tr *ngFor="let score of playerScoreData">
+        <td>{{score.player1Score}}</td>
+        <td>{{score.player2Score}}</td>
+        <td>{{score.player3Score}}</td>
+        <td>{{score.player4Score}}</td>
+      </tr>
+
       <tr>
-        <td>John</td>
-        <td>Doe</td>
-        <td>john@example.com</td>
+        Total
       </tr>
       <tr>
-        <td>Mary</td>
-        <td>Moe</td>
-        <td>mary@example.com</td>
+        <td>{{playerOneTotalScore}}</td>
+        <td>{{playerTwoTotalScore}}</td>
+        <td>{{playerThreeTotalScore}}</td>
+        <td>{{playerFourTotalScore}}</td>
+      </tr>
+
+      <tr [formGroup]="scoreInputForm">
+        <td>
+          <input type="number" class="form-control" formControlName="player1Score" (change)="onInputChange('1', scoreInputForm.value.player1Score)" />
+        </td>
+        <td>
+          <input type="number" class="form-control" formControlName="player2Score" (change)="onInputChange('2', scoreInputForm.value.player2Score)" />
+        </td>
+        <td>
+          <input type="number" class="form-control" formControlName="player3Score" (change)="onInputChange('3', scoreInputForm.value.player3Score)" />
+        </td>
+        <td>
+          <input type="number" class="form-control" formControlName="player4Score" (change)="onInputChange('4', scoreInputForm.value.player4Score)" />
+        </td>
       </tr>
       <tr>
-        <td>July</td>
-        <td>Dooley</td>
-        <td>july@example.com</td>
+        <td>
+          <button type="button" (click)="saveScores()">Save</button>
+        </td>
       </tr>
+      <!-- <div class="form-group row">
+        <label class="col-sm-3 control-label">Location </label>
+        <div class="col-sm-6 ">
+        </div>
+      </div> -->
+
     </tbody>
   </table>
 </div>
