@@ -1,5 +1,11 @@
 <div class="container table-box">
-  <h2>Mahjong Game Score</h2>
+
+  <h1>Mahjong Game Score</h1>
+  <div class="header-bar">
+    <div class="right-bar">
+        <i class="fa fa-undo fa-2x clickable" title="Start a new game" (click)="gameReset()"></i>
+    </div>
+  </div>
   <table class="table table-bordered">
     <thead>
       <tr>
@@ -19,7 +25,7 @@
 
       <tr>
         <td colspan="4">
-          <strong>Total:</strong> 
+          <strong>Total:</strong>
         </td>
       </tr>
       <tr>

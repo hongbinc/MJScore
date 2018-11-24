@@ -33,7 +33,7 @@ export class ScoreFormComponent implements OnInit {
 
         let localStorageData = localStorage.getItem('MJScoreData');
 
-        if(localStorageData){
+        if (localStorageData) {
             this.playerScoreData = JSON.parse(localStorage.getItem('MJScoreData'));
         }
 
@@ -142,10 +142,10 @@ export class ScoreFormComponent implements OnInit {
         let player3 = this.scoreInputForm.value.player3Score;
         let player4 = this.scoreInputForm.value.player4Score;
 
-        if(!player1 || !player2 || !player3 || !player4){
+        if (!player1 || !player2 || !player3 || !player4) {
             return;
         }
-        
+
         console.log("save", this.inputScores)
         let scores = this.defaultScoreModel();
         scores.player1Score = this.inputScores.player1Score;
@@ -163,6 +163,15 @@ export class ScoreFormComponent implements OnInit {
         localStorage.setItem('MJScoreData', JSON.stringify(this.playerScoreData));
         console.log("Data", this.playerScoreData)
         this.resetInputScore();
+    }
+
+    gameReset() {
+        localStorage.removeItem('MJScoreData');
+        this.playerScoreData = [];
+        this.playerOneTotalScore = 0;
+        this.playerTwoTotalScore = 0;
+        this.playerThreeTotalScore = 0;
+        this.playerFourTotalScore = 0;
     }
 
     onSubmit({ value }) {
