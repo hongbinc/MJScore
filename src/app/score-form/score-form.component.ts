@@ -129,6 +129,16 @@ export class ScoreFormComponent implements OnInit {
     }
 
     saveScores() {
+
+        let player1 = this.scoreInputForm.value.player1Score;
+        let player2 = this.scoreInputForm.value.player2Score;
+        let player3 = this.scoreInputForm.value.player3Score;
+        let player4 = this.scoreInputForm.value.player4Score;
+
+        if(!player1 || !player2 || !player3 || !player4){
+            return;
+        }
+        
         console.log("save", this.inputScores)
         let scores = this.defaultScoreModel();
         scores.player1Score = this.inputScores.player1Score;

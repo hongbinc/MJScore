@@ -1,7 +1,5 @@
 <div class="container">
-  <h2>Bordered Table</h2>
-  <p>The .table-bordered class adds borders to a table:</p>
-
+  <h2>Mahjong Game Score</h2>
   <table class="table table-bordered">
     <thead>
       <tr>
@@ -20,7 +18,9 @@
       </tr>
 
       <tr>
-        Total
+        <td colspan="4">
+          <strong>Total:</strong> 
+        </td>
       </tr>
       <tr>
         <td>{{playerOneTotalScore}}</td>
@@ -45,7 +45,7 @@
       </tr>
       <tr>
         <td>
-          <button type="button" (click)="saveScores()">Save</button>
+          <button type="button" (click)="saveScores()" class="btn btn-success">Save</button>
         </td>
       </tr>
       <!-- <div class="form-group row">
