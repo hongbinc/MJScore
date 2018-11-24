@@ -30,19 +30,26 @@ export class ScoreFormComponent implements OnInit {
     ) { }
 
     ngOnInit() {
+
+        let localStorageData = localStorage.getItem('MJScoreData');
+
+        if(localStorageData){
+            this.playerScoreData = JSON.parse(localStorage.getItem('MJScoreData'));
+        }
+
         this.initForm();
 
-        this.playerScoreData = [{
-            player1Score: -12,
-            player2Score: -12,
-            player3Score: -12,
-            player4Score: 36
-        }, {
-            player1Score: -12,
-            player2Score: -12,
-            player3Score: -12,
-            player4Score: 36
-        }]
+        // this.playerScoreData = [{
+        //     player1Score: -12,
+        //     player2Score: -12,
+        //     player3Score: -12,
+        //     player4Score: 36
+        // }, {
+        //     player1Score: -12,
+        //     player2Score: -12,
+        //     player3Score: -12,
+        //     player4Score: 36
+        // }]
 
         if (this.playerScoreData.length > 0) {
             this.playerScoreData.forEach(score => {
@@ -153,6 +160,7 @@ export class ScoreFormComponent implements OnInit {
         this.playerThreeTotalScore = this.playerThreeTotalScore + this.inputScores.player3Score;
         this.playerFourTotalScore = this.playerFourTotalScore + this.inputScores.player4Score;
 
+        localStorage.setItem('MJScoreData', JSON.stringify(this.playerScoreData));
         console.log("Data", this.playerScoreData)
         this.resetInputScore();
     }
