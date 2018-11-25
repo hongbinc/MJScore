@@ -18,6 +18,11 @@ export class ScoreFormComponent implements OnInit {
     public playerThreeTotalScore: number = 0;
     public playerFourTotalScore: number = 0;
 
+    public player1ScoreInput: any;
+    public player2ScoreInput: any;
+    public player3ScoreInput: any;
+    public player4ScoreInput: any;
+
     private inputScores: PlayerScore = {
         player1Score: 0,
         player2Score: 0,
@@ -38,6 +43,11 @@ export class ScoreFormComponent implements OnInit {
         }
 
         this.initForm();
+
+        this.player1ScoreInput = this.scoreInputForm.controls['player1Score'];
+        this.player2ScoreInput = this.scoreInputForm.controls['player2Score'];
+        this.player3ScoreInput = this.scoreInputForm.controls['player3Score'];
+        this.player4ScoreInput = this.scoreInputForm.controls['player4Score'];
 
         // this.playerScoreData = [{
         //     player1Score: -12,
@@ -91,44 +101,44 @@ export class ScoreFormComponent implements OnInit {
             this.inputScores.player3Score = -value;
             this.inputScores.player4Score = -value;
 
-            this.scoreInputForm.controls['player2Score'].setValue(-value);
-            this.scoreInputForm.controls['player3Score'].setValue(-value);
-            this.scoreInputForm.controls['player4Score'].setValue(-value);
+            this.player2ScoreInput.setValue(-value);
+            this.player3ScoreInput.setValue(-value);
+            this.player4ScoreInput.setValue(-value);
         } else if (player === "2") {
             this.inputScores.player1Score = -value;
             this.inputScores.player2Score = 3 * value;
             this.inputScores.player3Score = -value;
             this.inputScores.player4Score = -value;
 
-            this.scoreInputForm.controls['player1Score'].setValue(-value);
-            this.scoreInputForm.controls['player3Score'].setValue(-value);
-            this.scoreInputForm.controls['player4Score'].setValue(-value);
+            this.player1ScoreInput.setValue(-value);
+            this.player3ScoreInput.setValue(-value);
+            this.player4ScoreInput.setValue(-value);
         } else if (player === "3") {
             this.inputScores.player1Score = -value;
             this.inputScores.player2Score = -value;
             this.inputScores.player3Score = 3 * value;
             this.inputScores.player4Score = -value;
 
-            this.scoreInputForm.controls['player1Score'].setValue(-value);
-            this.scoreInputForm.controls['player2Score'].setValue(-value);
-            this.scoreInputForm.controls['player4Score'].setValue(-value);
+            this.player1ScoreInput.setValue(-value);
+            this.player2ScoreInput.setValue(-value);
+            this.player4ScoreInput.setValue(-value);
         } else if (player === "4") {
             this.inputScores.player1Score = -value;
             this.inputScores.player2Score = -value;
             this.inputScores.player3Score = -value;
             this.inputScores.player4Score = 3 * value;
 
-            this.scoreInputForm.controls['player1Score'].setValue(-value);
-            this.scoreInputForm.controls['player2Score'].setValue(-value);
-            this.scoreInputForm.controls['player3Score'].setValue(-value);
+            this.player1ScoreInput.setValue(-value);
+            this.player2ScoreInput.setValue(-value);
+            this.player3ScoreInput.setValue(-value);
         }
     }
 
     resetInputScore() {
-        this.scoreInputForm.controls['player1Score'].setValue('');
-        this.scoreInputForm.controls['player2Score'].setValue('');
-        this.scoreInputForm.controls['player3Score'].setValue('');
-        this.scoreInputForm.controls['player4Score'].setValue('');
+        this.player1ScoreInput.setValue('');
+        this.player2ScoreInput.setValue('');
+        this.player3ScoreInput.setValue('');
+        this.player4ScoreInput.setValue('');
     }
 
     formInput() {
