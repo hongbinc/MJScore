@@ -28,6 +28,7 @@
           <strong>Total:</strong>
         </td>
       </tr>
+      
       <tr>
         <td>{{playerOneTotalScore}}</td>
         <td>{{playerTwoTotalScore}}</td>
@@ -49,17 +50,14 @@
           <input type="number" class="form-control" formControlName="player4Score" (change)="onInputChange('4', scoreInputForm.value.player4Score)" />
         </td>
       </tr>
-      <tr>
-        <td>
-          <button type="button" (click)="saveScores()" class="btn btn-success">Save</button>
-        </td>
-      </tr>
-      <!-- <div class="form-group row">
-        <label class="col-sm-3 control-label">Location </label>
-        <div class="col-sm-6 ">
-        </div>
-      </div> -->
-
     </tbody>
   </table>
+
+  <p class="error-msg center" *ngIf="!validInput">
+    Please provide a valid input.
+  </p>
+  
+  <div class="save-button">
+    <button type="button" (click)="saveScores()" class="btn btn-success">Save</button>
+  </div>
 </div>
