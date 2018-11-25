@@ -23,6 +23,8 @@ export class ScoreFormComponent implements OnInit {
     public player3ScoreInput: any;
     public player4ScoreInput: any;
 
+    public validInput: boolean = true;
+
     private inputScores: PlayerScore = {
         player1Score: 0,
         player2Score: 0,
@@ -48,18 +50,6 @@ export class ScoreFormComponent implements OnInit {
         this.player2ScoreInput = this.scoreInputForm.controls['player2Score'];
         this.player3ScoreInput = this.scoreInputForm.controls['player3Score'];
         this.player4ScoreInput = this.scoreInputForm.controls['player4Score'];
-
-        // this.playerScoreData = [{
-        //     player1Score: -12,
-        //     player2Score: -12,
-        //     player3Score: -12,
-        //     player4Score: 36
-        // }, {
-        //     player1Score: -12,
-        //     player2Score: -12,
-        //     player3Score: -12,
-        //     player4Score: 36
-        // }]
 
         if (this.playerScoreData.length > 0) {
             this.playerScoreData.forEach(score => {
@@ -91,7 +81,6 @@ export class ScoreFormComponent implements OnInit {
 
     onInputChange(player, value) {
         if (!value || value < 0) return;
-
 
         value = Number(value);
 
@@ -152,11 +141,13 @@ export class ScoreFormComponent implements OnInit {
         let player3 = this.scoreInputForm.value.player3Score;
         let player4 = this.scoreInputForm.value.player4Score;
 
-        if (!player1 || !player2 || !player3 || !player4) {
+        this.validInput = this.inputValidation();
+
+        if (!this.validInput || !player1 || !player2 || !player3 || !player4) {
             return;
         }
 
-        console.log("save", this.inputScores)
+        //console.log("save", this.inputScores)
         let scores = this.defaultScoreModel();
         scores.player1Score = this.inputScores.player1Score;
         scores.player2Score = this.inputScores.player2Score;
@@ -171,7 +162,7 @@ export class ScoreFormComponent implements OnInit {
         this.playerFourTotalScore = this.playerFourTotalScore + this.inputScores.player4Score;
 
         localStorage.setItem('MJScoreData', JSON.stringify(this.playerScoreData));
-        console.log("Data", this.playerScoreData)
+        //console.log("Data", this.playerScoreData)
         this.resetInputScore();
     }
 
@@ -184,7 +175,19 @@ export class ScoreFormComponent implements OnInit {
         this.playerFourTotalScore = 0;
     }
 
-    onSubmit({ value }) {
+    inputValidation(): boolean {
+        let total: number;
+        let absValue = Math.abs(this.scoreInputForm.value.player1Score);
 
+        total = this.inputScores.player1Score + this.inputScores.player2Score + this.inputScores.player3Score + this.inputScores.player4Score;
+        if (total !== 0) {
+            return false;
+        } else if (Math.abs(this.scoreInputForm.value.player2Score) !== absValue || Math.abs(this.scoreInputForm.value.player3Score) !== absValue || Math.abs(this.scoreInputForm.value.player4Score) !== absValue) {
+            return false;
+        } else if (absValue === 0) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }
